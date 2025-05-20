@@ -25,6 +25,8 @@ class ViewController: UIViewController {
         button2.layer.borderColor = UIColor.lightGray.cgColor
         button3.layer.borderColor = UIColor.lightGray.cgColor
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Score", style: .plain, target: self, action: #selector(showScore))
+
         askQuestion()
     }
         
@@ -61,6 +63,7 @@ class ViewController: UIViewController {
             let chosenCountry = countries[sender.tag]
             message = "That is the Flag of \(chosenCountry.uppercased()).\nYour Score is \(score)"
         }
+        
         if questionAsked == maxQuestion {
             let finalAlert = UIAlertController(title: "Game Over", message: "You Scored \(score) out of \(maxQuestion).", preferredStyle: .alert)
             finalAlert.addAction(UIAlertAction(title: "Play Again", style: .default) { [weak self] _ in
@@ -79,4 +82,11 @@ class ViewController: UIViewController {
         
     }
     
+    @objc func showScore() {
+        let ac = UIAlertController(title: "Your Score", message: "Your current score is \(score).", preferredStyle: .alert)
+        
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        present(ac, animated: true)
+    }
 }
